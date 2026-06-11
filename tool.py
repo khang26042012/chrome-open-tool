@@ -24,7 +24,7 @@ try:
         print("Doi 5 giay cho trang load...")
         time.sleep(5)
         print("Dang cuon xuong...")
-        for i in range(3):
+        for i in range(4):
             subprocess.run([RISH, "-c", "input swipe 540 1600 540 900 800"])
             time.sleep(0.5)
         print("Xong! Kiem tra man hinh xem anh da hien chua.")
