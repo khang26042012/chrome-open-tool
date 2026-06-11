@@ -1,8 +1,9 @@
 import subprocess
 import urllib.request
 import urllib.error
+import time
 
-KEYWORDS = ["TAC GIA", "TAC GIA", "NGAY DANG", "NGAY DANG", "LUOT XEM", "LUOT XEM", "GETCODE"]
+KEYWORDS = ["TAC GIA", "NGAY DANG", "LUOT XEM", "GETCODE"]
 
 url = input("Nhap link: ").strip()
 if not url.startswith(("http://", "https://")):
@@ -15,8 +16,15 @@ try:
         html = response.read().decode("utf-8", errors="ignore").upper()
     found = any(k.upper() in html for k in KEYWORDS)
     if found:
-        print("OK: Dang mo Chrome...")
+        print("OK: Trang hop le. Dang mo Chrome...")
         subprocess.run(["am", "start", "-a", "android.intent.action.VIEW", "-d", url, "-n", "com.android.chrome/com.google.android.apps.chrome.Main"])
+        print("Doi trang load...")
+        time.sleep(3)
+        print("Dang cuon xuong de xem anh...")
+        subprocess.run(["input", "swipe", "540", "1600", "540", "900", "800"])
+        time.sleep(1)
+        subprocess.run(["input", "swipe", "540", "1600", "540", "900", "800"])
+        print("Xong! Kiem tra man hinh xem anh da hien chua.")
     else:
         print("LOI: Trang khong co thong tin hop le")
 except Exception as e:
