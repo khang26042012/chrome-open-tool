@@ -1,8 +1,12 @@
 import subprocess
 import urllib.request
 import time
+import os
 
 KEYWORDS = ["TAC GIA", "NGAY DANG", "LUOT XEM", "GETCODE"]
+
+os.environ["RISH_APPLICATION_ID"] = "com.termux"
+RISH = os.path.expanduser("~/rish")
 
 url = input("Nhap link: ").strip()
 if not url.startswith(("http://", "https://")):
@@ -20,9 +24,9 @@ try:
         print("Doi 5 giay cho trang load...")
         time.sleep(5)
         print("Dang cuon xuong...")
-        for i in range(5):
-            subprocess.run(["input", "keyevent", "93"])
-            time.sleep(0.3)
+        for i in range(3):
+            subprocess.run([RISH, "-c", "input swipe 540 1600 540 900 800"])
+            time.sleep(0.5)
         print("Xong! Kiem tra man hinh xem anh da hien chua.")
     else:
         print("LOI: Trang khong co thong tin hop le")
