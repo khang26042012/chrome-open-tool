@@ -1,6 +1,5 @@
 import subprocess
 import urllib.request
-import urllib.error
 import time
 
 KEYWORDS = ["TAC GIA", "NGAY DANG", "LUOT XEM", "GETCODE"]
@@ -18,12 +17,12 @@ try:
     if found:
         print("OK: Trang hop le. Dang mo Chrome...")
         subprocess.run(["am", "start", "-a", "android.intent.action.VIEW", "-d", url, "-n", "com.android.chrome/com.google.android.apps.chrome.Main"])
-        print("Doi trang load...")
-        time.sleep(3)
-        print("Dang cuon xuong de xem anh...")
-        subprocess.run(["input", "swipe", "540", "1600", "540", "900", "800"])
-        time.sleep(1)
-        subprocess.run(["input", "swipe", "540", "1600", "540", "900", "800"])
+        print("Doi 5 giay cho trang load...")
+        time.sleep(5)
+        print("Dang cuon xuong...")
+        for i in range(5):
+            subprocess.run(["input", "keyevent", "93"])
+            time.sleep(0.3)
         print("Xong! Kiem tra man hinh xem anh da hien chua.")
     else:
         print("LOI: Trang khong co thong tin hop le")
